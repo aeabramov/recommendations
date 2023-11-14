@@ -61,16 +61,14 @@ docker run -p 5000:5000 recommender-service
 Endpoint: /recommend
 
     Метод: POST
-    Параметры:
+    Параметры запроса:
         visitor_id: Идентификатор пользователя (integer)
-        num_recommendations: Количество рекомендаций (integer)
 
 Пример запроса:
 
 ```json
 {
-  "visitor_id": 123,
-  "num_recommendations": 3
+  "visitor_id": 123
 }
 ```
 
@@ -79,7 +77,11 @@ Endpoint: /recommend
 ```json
 {
   "visitor_id": 123,
-  "recommendations": [456, 789, 101]
+  "recommendations": [
+    {"item_id": 456, "estimation": 2.13},
+    {"item_id": 789, "estimation": 1.95},
+    {"item_id": 101, "estimation": 1.87}
+  ]
 }
 ```
 
