@@ -29,6 +29,7 @@
 Для оценки качества моделей данные были разделены на обучающий и тестовый наборы в соотношении 70:30. Валидация проводилась на тестовом наборе для каждой модели.
 
 ### Эксперименты
+Для оценки моделей использовалась метрика Precision@3.
 #### LightFM
 
     Тип модели: Hybrid (Collaborative Filtering + Content-Based)
@@ -53,8 +54,7 @@
 ### Команды для запуска Docker-образа
 
 ```bash
-docker build -t recommender-service:latest .
-docker run -p 5000:5000 recommender-service
+docker run -p 5000:5000 aeabramov/recommendations-app:latest
 ```
 
 ### API сервиса
@@ -70,6 +70,9 @@ Endpoint: /recommend
 {
   "visitor_id": 123
 }
+```
+```powershell
+Invoke-RestMethod -Uri http://127.0.0.1:5000/recommend -Method Post -Headers @{"Content-Type"="application/json"} -Body '{"visitor_id": 123}'
 ```
 
 Пример ответа:
